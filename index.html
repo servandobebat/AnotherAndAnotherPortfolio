@@ -1,0 +1,1526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Servando Bebat III | Cybersecurity Portfolio</title>
+
+<style>
+:root {
+    --bg: #030712;
+    --surface: #0f172a;
+    --surface-2: #1e293b;
+    --text: #f8fafc;
+    --muted: #94a3b8;
+    --accent: #10b981;
+    --accent-glow: rgba(16, 185, 129, 0.25);
+    --border: rgba(148, 163, 184, 0.12);
+    --shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+    --radius: 14px;
+}
+
+body.light-mode {
+    --bg: #f8fafc;
+    --surface: #ffffff;
+    --surface-2: #f1f5f9;
+    --text: #0f172a;
+    --muted: #64748b;
+    --accent: #059669;
+    --accent-glow: rgba(5, 150, 105, 0.15);
+    --border: rgba(100, 116, 139, 0.15);
+    --shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.08);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    transition: background 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+.container {
+    width: min(1160px, 90%);
+    margin: auto;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(16px);
+}
+
+nav {
+    min-height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.logo span {
+    color: var(--accent);
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    list-style: none;
+}
+
+.nav-links a {
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: var(--accent);
+}
+
+.theme-toggle {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    padding: 10px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.theme-toggle:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 60px 0;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.08;
+    filter: blur(120px);
+    top: 10%;
+    right: -100px;
+    pointer-events: none;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+    gap: 60px;
+    position: relative;
+    z-index: 1;
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent);
+    font-size: 0.78rem;
+    letter-spacing: 2px;
+    font-weight: 800;
+    margin-bottom: 16px;
+    padding: 6px 12px;
+    background: var(--accent-glow);
+    border-radius: 6px;
+}
+
+.hero h1 {
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    line-height: 1.08;
+    letter-spacing: -2px;
+    margin-bottom: 20px;
+    font-weight: 800;
+}
+
+.hero h1 span {
+    color: var(--accent);
+}
+
+.hero-description {
+    color: var(--muted);
+    max-width: 540px;
+    font-size: 1.05rem;
+    margin-bottom: 30px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 36px;
+}
+
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 22px;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: #ffffff;
+    border: 1px solid var(--accent);
+    box-shadow: 0 4px 20px var(--accent-glow);
+}
+
+.btn-primary:hover {
+    opacity: 0.95;
+    box-shadow: 0 6px 25px var(--accent-glow);
+}
+
+.btn-outline {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+}
+
+.btn-outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--surface-2);
+}
+
+/* =========================
+   FIGMA PROJECTS
+========================= */
+
+.figma-section {
+    margin-top: 10px;
+    max-width: 600px;
+}
+
+.figma-section .eyebrow {
+    margin-bottom: 14px;
+}
+
+.figma-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.figma-card {
+    padding: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.figma-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    box-shadow: 0 12px 30px var(--accent-glow);
+}
+
+.figma-number {
+    color: var(--accent);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+}
+
+.figma-card h3 {
+    font-size: 1rem;
+    margin-bottom: 6px;
+}
+
+.figma-card p {
+    color: var(--muted);
+    font-size: 0.8rem;
+    line-height: 1.5;
+    margin-bottom: 14px;
+}
+
+.figma-card .btn {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 0.8rem;
+}
+
+/* =========================
+   NEW PROFILE DESIGN
+========================= */
+
+.profile-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-card {
+    width: 100%;
+    max-width: 360px;
+    padding: 14px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(16, 185, 129, 0.08),
+            var(--surface) 45%,
+            rgba(15, 23, 42, 0.95)
+        );
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    border-radius: 28px;
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.35),
+        0 0 40px rgba(16, 185, 129, 0.08);
+    position: relative;
+    overflow: hidden;
+    transition:
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+.profile-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(16, 185, 129, 0.7);
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.45),
+        0 0 45px rgba(16, 185, 129, 0.18);
+}
+
+/* Decorative lines */
+.profile-card::before {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border: 1px solid rgba(16, 185, 129, 0.15);
+    border-radius: 50%;
+    top: -100px;
+    right: -90px;
+}
+
+.profile-card::after {
+    content: "";
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    border: 1px solid rgba(16, 185, 129, 0.12);
+    border-radius: 50%;
+    bottom: -70px;
+    left: -60px;
+}
+
+/* Image container */
+.photo-frame {
+    width: 100%;
+    height: 420px;
+    position: relative;
+    overflow: hidden;
+    background: #020617;
+    border: 2px solid rgba(16, 185, 129, 0.35);
+    border-radius: 22px;
+    box-shadow:
+        inset 0 0 30px rgba(16, 185, 129, 0.06),
+        0 0 25px rgba(16, 185, 129, 0.08);
+}
+
+/* Cybersecurity corner effect */
+.photo-frame::before,
+.photo-frame::after {
+    content: "";
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.photo-frame::before {
+    top: 12px;
+    left: 12px;
+    border-top: 3px solid var(--accent);
+    border-left: 3px solid var(--accent);
+}
+
+.photo-frame::after {
+    bottom: 12px;
+    right: 12px;
+    border-bottom: 3px solid var(--accent);
+    border-right: 3px solid var(--accent);
+}
+
+/* Actual profile image */
+.photo-frame img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+
+    /* Keeps the image stable */
+    object-fit: cover;
+    object-position: center center;
+
+    transition:
+        transform 0.5s ease,
+        filter 0.5s ease;
+}
+
+.profile-card:hover .photo-frame img {
+    transform: scale(1.03);
+    filter: brightness(1.05);
+}
+
+/* Dark gradient over bottom of image */
+.photo-overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 150px;
+    background:
+        linear-gradient(
+            to top,
+            rgba(2, 6, 23, 0.95),
+            rgba(2, 6, 23, 0)
+        );
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Small cyber label */
+.security-badge {
+    position: absolute;
+    left: 18px;
+    top: 18px;
+    z-index: 4;
+    padding: 7px 12px;
+    background: rgba(2, 6, 23, 0.75);
+    border: 1px solid rgba(16, 185, 129, 0.45);
+    border-radius: 999px;
+    color: #ffffff;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    backdrop-filter: blur(10px);
+}
+
+/* Image placeholder */
+.photo-placeholder {
+    position: absolute;
+    inset: 0;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    color: var(--muted);
+    background: var(--surface-2);
+    z-index: 5;
+}
+
+.photo-placeholder .placeholder-icon {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.photo-placeholder strong {
+    color: var(--text);
+    font-size: 1rem;
+}
+
+.photo-placeholder p {
+    margin-top: 6px;
+    font-size: 0.8rem;
+}
+
+/* Name placed inside image */
+.profile-info-overlay {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    z-index: 4;
+}
+
+.profile-info-overlay strong {
+    display: block;
+    color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: 800;
+}
+
+.profile-info-overlay span {
+    color: #6ee7b7;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* Upload button */
+.change-photo-btn {
+    display: block;
+    width: 100%;
+    margin-top: 14px;
+    padding: 11px;
+    text-align: center;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 700;
+    transition: all 0.2s ease;
+}
+
+.change-photo-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-glow);
+}
+
+#photoUpload {
+    display: none;
+}
+
+/* Profile status */
+.profile-status {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 13px;
+    color: var(--muted);
+    font-size: 0.72rem;
+    font-weight: 600;
+}
+
+.online-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+.content-section {
+    padding: 100px 0;
+    border-top: 1px solid var(--border);
+}
+
+.section-label {
+    color: var(--accent);
+    font-size: 0.78rem;
+    letter-spacing: 2.5px;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.section-title {
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    letter-spacing: -1px;
+    line-height: 1.2;
+    margin-bottom: 18px;
+    font-weight: 800;
+}
+
+.section-description {
+    color: var(--muted);
+    max-width: 600px;
+    margin-bottom: 40px;
+    font-size: 1.05rem;
+}
+
+/* =========================
+   ABOUT
+========================= */
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 40px;
+    align-items: stretch;
+}
+
+.about-copy {
+    color: var(--muted);
+    font-size: 1.05rem;
+}
+
+.about-copy p + p {
+    margin-top: 18px;
+}
+
+.info-card {
+    padding: 30px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.info-card h3 {
+    margin-bottom: 12px;
+    font-size: 1.2rem;
+}
+
+.info-card p {
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
+.status-line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 24px;
+    color: var(--accent);
+    font-size: 0.88rem;
+    font-weight: 700;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+    position: relative;
+}
+
+.status-dot::after {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 1px solid var(--accent);
+    animation: pulseRing 1.5s infinite;
+}
+
+@keyframes pulseRing {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(2.2);
+        opacity: 0;
+    }
+}
+
+/* =========================
+   SKILLS
+========================= */
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.skill-card {
+    padding: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: all 0.25s ease;
+}
+
+.skill-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px var(--accent-glow);
+}
+
+.skill-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: var(--accent-glow);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 18px;
+}
+
+.skill-card h3 {
+    margin-bottom: 10px;
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+.skill-card p {
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact-panel {
+    padding: 50px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.contact-panel .section-title {
+    margin-bottom: 12px;
+}
+
+.contact-panel p {
+    color: var(--muted);
+    max-width: 500px;
+    font-size: 1.05rem;
+}
+
+.contact-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    border-top: 1px solid var(--border);
+    padding: 30px 0;
+    color: var(--muted);
+    font-size: 0.85rem;
+    background: var(--surface);
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.footer-content span {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+        opacity 0.6s ease,
+        transform 0.6s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1000px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        justify-items: center;
+    }
+
+    .hero-description,
+    .hero-buttons,
+    .figma-section {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-card {
+        max-width: 360px;
+    }
+}
+
+@media (max-width: 800px) {
+    .skills-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .contact-panel {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 35px;
+    }
+}
+
+@media (max-width: 600px) {
+    nav {
+        flex-direction: column;
+        padding: 15px 0;
+        gap: 12px;
+    }
+
+    .nav-right {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .nav-links {
+        gap: 14px;
+    }
+
+    .skills-grid,
+    .figma-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .photo-frame {
+        height: 380px;
+    }
+
+    .profile-card {
+        max-width: 100%;
+    }
+
+    .hero {
+        padding-top: 40px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<header>
+<nav class="container">
+
+<a class="logo" href="#home">
+    SERVANDO<span>.</span>
+</a>
+
+<div class="nav-right">
+
+<ul class="nav-links">
+    <li><a href="#home">HOME</a></li>
+    <li><a href="#about">ABOUT</a></li>
+    <li><a href="#skills">SKILLS</a></li>
+    <li><a href="#contact">CONTACT</a></li>
+</ul>
+
+<button class="theme-toggle" id="themeToggle" type="button">
+    🌙 Light
+</button>
+
+</div>
+</nav>
+</header>
+
+<main>
+
+<!-- =========================
+     HOME / HERO
+========================= -->
+
+<section class="hero" id="home">
+
+<div class="container hero-grid">
+
+<div class="hero-content reveal">
+
+<span class="eyebrow">
+    🛡️ CYBERSECURITY PORTFOLIO
+</span>
+
+<h1>
+    Servando<br>
+    Bebat <span>III.</span>
+</h1>
+
+<p class="hero-description">
+    Exploring the digital world through cybersecurity,
+    threat awareness, network defense, and secure technology.
+    Welcome to my personal portfolio.
+</p>
+
+<div class="hero-buttons">
+
+<a href="#skills" class="btn btn-primary">
+    Explore My Skills →
+</a>
+
+<a href="#contact" class="btn btn-outline">
+    Get in Touch
+</a>
+
+</div>
+
+<!-- FIGMA PROJECTS -->
+
+<div class="figma-section">
+
+<span class="eyebrow">
+    FEATURED FIGMA PROJECTS
+</span>
+
+<div class="figma-grid">
+
+<article class="figma-card">
+
+<div class="figma-number">
+    PROJECT / 01
+</div>
+
+<h3>
+    OVHcloud
+</h3>
+
+<p>
+    Explore my OVHcloud Figma design project concept.
+</p>
+
+<a href="https://www.figma.com/proto/8VHO9jycjYFAc0Vz8q765w/Untitled?node-id=2-2&t=Lgi5kl9YWsuqKvyi-1"
+   class="btn btn-outline"
+   target="_blank"
+   rel="noopener noreferrer">
+    View Figma
+</a>
+
+</article>
+
+<article class="figma-card">
+
+<div class="figma-number">
+    PROJECT / 02
+</div>
+
+<h3>
+    SQUARESPACE
+</h3>
+
+<p>
+    Explore my Squarespace layout redesign project.
+</p>
+
+<a href="https://www.figma.com/proto/ZZxF8nvVykU2VvXhGQb4LC/Figma-2?node-id=0-1&t=Lgi5kl9YWsuqKvyi-1"
+   class="btn btn-outline"
+   target="_blank"
+   rel="noopener noreferrer">
+    View Figma
+</a>
+
+</article>
+
+</div>
+</div>
+
+</div>
+
+<!-- =========================
+     NEW PROFILE PHOTO
+========================= -->
+
+<div class="profile-area reveal">
+
+<div class="profile-card">
+
+<div class="photo-frame">
+
+<div class="security-badge">
+    ● PROFILE / ONLINE
+</div>
+
+<img
+    id="profileImage"
+    src="c:\Users\user\Downloads\b4ea5851-84ef-4087-b1c5-e5e8a0352cb9.jpg"
+    alt="Servando Bebat III"
+>
+
+<div class="photo-overlay"></div>
+
+<div class="profile-info-overlay">
+
+<strong>
+    Servando Bebat III
+</strong>
+
+<span>
+    CYBERSECURITY ENTHUSIAST
+</span>
+
+</div>
+
+<div class="photo-placeholder" id="photoPlaceholder">
+
+<div class="placeholder-icon">
+    👤
+</div>
+
+<strong>
+    Profile Photo Not Found
+</strong>
+
+<p>
+    Put your image inside the image folder.
+</p>
+
+</div>
+
+</div>
+
+<label class="change-photo-btn" for="photoUpload">
+    📷 Change Profile Photo
+</label>
+
+<input
+    type="file"
+    id="photoUpload"
+    accept="image/*"
+>
+
+<div class="profile-status">
+
+<span class="online-dot"></span>
+
+Profile Active • 2026
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section class="content-section" id="about">
+
+<div class="container">
+
+<div class="section-label">
+    01 / ABOUT ME
+</div>
+
+<div class="about-grid">
+
+<div class="reveal">
+
+<h2 class="section-title">
+    Protecting the digital world, one layer at a time.
+</h2>
+
+<div class="about-copy">
+
+<p>
+    Hello! I'm Servando Bebat III. I'm deeply interested in
+    cybersecurity, network architecture, and learning how to
+    protect systems, networks, and individuals from evolving
+    digital threats.
+</p>
+
+<p>
+    This portfolio showcases my growing expertise, security concepts,
+    and projects that I am actively building as I expand my knowledge
+    in information security.
+</p>
+
+</div>
+
+</div>
+
+<div class="info-card reveal">
+
+<div>
+
+<h3>
+    My Mission
+</h3>
+
+<p>
+    To build robust cybersecurity knowledge, master risk assessment
+    principles, and promote safer digital environments through
+    relentless practice.
+</p>
+
+</div>
+
+<div class="status-line">
+
+<span class="status-dot"></span>
+
+Learning. Building. Securing.
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =========================
+     SKILLS
+========================= -->
+
+<section class="content-section" id="skills">
+
+<div class="container">
+
+<div class="section-label">
+    02 / EXPERTISE
+</div>
+
+<h2 class="section-title reveal">
+    My security toolkit.
+</h2>
+
+<p class="section-description reveal">
+    Core areas of interest and technical knowledge I am continuously building.
+</p>
+
+<div class="skills-grid">
+
+<div class="skill-card reveal">
+
+<div class="skill-icon">
+    🔐
+</div>
+
+<h3>
+    Cybersecurity Fundamentals
+</h3>
+
+<p>
+    Learning foundational security principles, threat vectors,
+    and mitigation strategies.
+</p>
+
+</div>
+
+<div class="skill-card reveal">
+
+<div class="skill-icon">
+    🌐
+</div>
+
+<h3>
+    Network Security
+</h3>
+
+<p>
+    Exploring packet analysis, system traffic monitoring,
+    and basic defense setups.
+</p>
+
+</div>
+
+<div class="skill-card reveal">
+
+<div class="skill-icon">
+    ⚠️
+</div>
+
+<h3>
+    Threat Awareness
+</h3>
+
+<p>
+    Recognizing phishing vectors, social engineering tactics,
+    and digital vulnerabilities.
+</p>
+
+</div>
+
+<div class="skill-card reveal">
+
+<div class="skill-icon">
+    💻
+</div>
+
+<h3>
+    Web Technology
+</h3>
+
+<p>
+    Understanding front-end web architectures, HTML/CSS/JS,
+    and secure coding patterns.
+</p>
+
+</div>
+
+<div class="skill-card reveal">
+
+<div class="skill-icon">
+    🛡️
+</div>
+
+<h3>
+    Digital Safety
+</h3>
+
+<p>
+    Practicing clean credential management, encryption,
+    and secure browsing habits.
+</p>
+
+</div>
+
+<div class="skill-card reveal">
+
+<div class="skill-icon">
+    📊
+</div>
+
+<h3>
+    Research & Analysis
+</h3>
+
+<p>
+    Investigating security incidents, threat intelligence reports,
+    and modern defenses.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<section class="content-section" id="contact">
+
+<div class="container">
+
+<div class="section-label">
+    03 / GET IN TOUCH
+</div>
+
+<div class="contact-panel reveal">
+
+<div>
+
+<h2 class="section-title">
+    Let's Connect.
+</h2>
+
+<p>
+    Thank you for exploring my portfolio. Feel free to connect
+    with me across my platforms or drop me an email.
+</p>
+
+</div>
+
+<div class="contact-buttons">
+
+<a
+    href="https://www.instagram.com/thirdybebat00/"
+    class="btn btn-primary"
+    target="_blank"
+    rel="noopener noreferrer">
+    Instagram
+</a>
+
+<a
+    href="mailto:thirdybebat5@gmail.com"
+    class="btn btn-outline">
+    Gmail
+</a>
+
+<a
+    href="https://github.com/servandobebat"
+    class="btn btn-outline"
+    target="_blank"
+    rel="noopener noreferrer">
+    GitHub
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+<div class="container footer-content">
+
+<p>
+    © 2026 <span>Servando Bebat III</span>. All Rights Reserved.
+</p>
+
+<p>
+    Cybersecurity Portfolio
+</p>
+
+</div>
+
+</footer>
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+/* =========================
+   DARK / LIGHT MODE
+========================= */
+
+const themeToggle =
+    document.getElementById("themeToggle");
+
+themeToggle.addEventListener("click", () => {
+
+    document.body.classList.toggle("light-mode");
+
+    if (document.body.classList.contains("light-mode")) {
+
+        themeToggle.innerHTML = "☀️ Dark";
+
+    } else {
+
+        themeToggle.innerHTML = "🌙 Light";
+
+    }
+
+});
+
+
+/* =========================
+   PROFILE PHOTO UPLOADER
+========================= */
+
+const photoUpload =
+    document.getElementById("photoUpload");
+
+const profileImage =
+    document.getElementById("profileImage");
+
+const photoPlaceholder =
+    document.getElementById("photoPlaceholder");
+
+let currentImageURL = null;
+
+
+/* Show placeholder when image cannot load */
+
+function showPlaceholder() {
+
+    profileImage.style.display = "none";
+    photoPlaceholder.style.display = "flex";
+
+}
+
+
+/* Show image */
+
+function showProfileImage() {
+
+    profileImage.style.display = "block";
+    photoPlaceholder.style.display = "none";
+
+}
+
+
+/* Check default image */
+
+profileImage.addEventListener("load", showProfileImage);
+
+profileImage.addEventListener("error", showPlaceholder);
+
+
+/* Upload a new image */
+
+photoUpload.addEventListener("change", function(event) {
+
+    const file = event.target.files[0];
+
+    if (!file || !file.type.startsWith("image/")) {
+        return;
+    }
+
+    if (currentImageURL) {
+        URL.revokeObjectURL(currentImageURL);
+    }
+
+    currentImageURL = URL.createObjectURL(file);
+
+    profileImage.src = currentImageURL;
+
+    showProfileImage();
+
+});
+
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+const revealElements =
+    document.querySelectorAll(".reveal");
+
+const observer =
+    new IntersectionObserver((entries) => {
+
+        entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+                entry.target.classList.add("visible");
+
+                observer.unobserve(entry.target);
+
+            }
+
+        });
+
+    }, {
+        threshold: 0.1
+    });
+
+
+revealElements.forEach(element => {
+    observer.observe(element);
+});
+
+</script>
+
+</body>
+</html>
